@@ -91,9 +91,10 @@ function selectModel(
       return {
         provider: Provider.OPEN_AI,
         modelName,
-        model: createOpenAI({ apiKey: aiApiKey || env.OPENAI_API_KEY })(
-          modelName,
-        ),
+        model: createOpenAI({
+          apiKey: aiApiKey || env.OPENAI_API_KEY,
+          baseURL: env.OPENAI_API_BASE,
+        })(modelName),
         providerOptions: openAiProviderOptions,
         backupModel: getBackupModel(aiApiKey),
       };
